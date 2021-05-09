@@ -1,0 +1,7 @@
+*.class
+*.MF 
+MANIFEST
+/MANIFEST.MF 
+**/MANIFEST.MF 
+**/MANIFEST.*
+.metadata/

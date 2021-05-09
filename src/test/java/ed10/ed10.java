@@ -11,73 +11,66 @@ public class ed10 {
 	
 	@Test
 	//CT01 – cadastrar livro com sucesso
-	public void ct01() {
+	public void ct01_sucesso() {
 		Biblioteca biblioteca = new Biblioteca();
-		Livro umLivro = new Livro("1111", "Engenharia de Software", "Pressman");
-		biblioteca.save(umLivro);
+		Livro primeiroLivro = new Livro("1111", "Engenharia de Software", "Pressman");
+		biblioteca.save(primeiroLivro);
 		List<Livro> lista = biblioteca.getLivros();
 		assertEquals("Engenharia de Software", lista.get(0).getTitulo());
-		}
+	}
 
 	@Test
-	//CT02 – cadastrar livro com isbn já cadastrado
-	public void ct02() {
+	// CT02 – cadastrar livro com isbn já cadastrado
+	public void ct02_erro() {
 		Biblioteca biblioteca = new Biblioteca();
 		boolean resultado;
 		Livro umLivro = new Livro("1111", "Engenharia de Software", "Pressman");
-		
-		//Primeiro Livro
+
+		// Primeiro Livro
 		resultado = biblioteca.save(umLivro);
-		
-		//Segundo Livro
+
+		// Segundo Livro
 		resultado = biblioteca.save(umLivro);
-		//List<Livro> lista = biblioteca.getLivros();
-		assertEquals(true, resultado);
-		}
+		assertEquals(false, resultado);
+	}
 	
-	
+
 	@Test
-	//CT03 – cadastrar livro com isbn em branco
-	public void ct03() {
+	// CT03 – cadastrar livro com isbn em branco
+	public void ct03_erro() {
 		Biblioteca biblioteca = new Biblioteca();
 		boolean resultado;
-		Livro umLivro = new Livro("3333", "Engenharia de Software", "Pressman");
-		
-		//Cadastra Livro
+		Livro umLivro = new Livro("", "Engenharia de Software", "Pressman");
+
+		// Cadastra Livro
 		resultado = biblioteca.save(umLivro);
-		
-		//List<Livro> lista = biblioteca.getLivros();
-		assertEquals(true, resultado);
-		}
-	
+		assertEquals(false, resultado);
+	}
+
 	
 	@Test
 	//CT04 – cadastrar livro com título em branco
-	public void ct04() {
+	public void ct04_erro() {
 		Biblioteca biblioteca = new Biblioteca();
 		boolean resultado;
 		Livro umLivro = new Livro("4444", "", "Pressman");
 		
 		//Cadastra Livro
 		resultado = biblioteca.save(umLivro);
-		
-		//List<Livro> lista = biblioteca.getLivros();
-		assertEquals(true, resultado);
-		}
+		assertEquals(false, resultado);
+	}
 	
 	
 	@Test
 	//CT05 – cadastrar livro com autor em branco
-	public void ct05() {
+	public void ct05_erro() {
 		Biblioteca biblioteca = new Biblioteca();
 		boolean resultado;
 		Livro umLivro = new Livro("5555", "Desenvolvimento Web", "");
 		
 		//Cadastra Livro
 		resultado = biblioteca.save(umLivro);
-		
-		//List<Livro> lista = biblioteca.getLivros();
-		assertEquals(true, resultado);
-		}
+		assertEquals(false, resultado);
+	}
 	
 }
